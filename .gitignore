@@ -161,6 +161,3 @@ cython_debug/
 
 # Ignore MacOS staff
 .DS_Store
-
-# Ignore anime data
-/posos/movies
