@@ -13,7 +13,7 @@ class Genre:
 
 @dataclasses.dataclass(frozen=True)
 class Movie:
-    id: str
+    id: int
     name: str
     russian: str
     score: float
