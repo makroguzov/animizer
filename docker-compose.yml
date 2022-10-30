@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  playground: &playground
+    build:
+      context: playground
+      dockerfile: Dockerfile
+      args:
+        PROJECT_DIR: '/playground'
+        USER: 'playground'
+    stdin_open: true
+    tty: true
+    environment:
+      DATABASE_PATH: 'sqlite3.db'
+    volumes:
+      - ./playground:/playground/sqlite3.db
+
+  playground-dev:
+    <<: *playground
+    volumes:
+      - ./playground:/playground
+
+volumes:
+  playground-database:
