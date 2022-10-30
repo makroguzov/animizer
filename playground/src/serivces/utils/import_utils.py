@@ -1,20 +1,13 @@
 from __future__ import annotations
 
 import json
-import pathlib
 import typing
 
 import pandas  # type: ignore
 
 from src.adapters.database import crud
-from src.core import settings
+from src.core import config
 from src.domain import models
-
-DATA = pathlib.Path(__file__) \
-           .parent.parent.parent.parent.resolve() / 'movies'
-
-MOVIES_DATA = DATA / 'movies.json'
-USERS_DATA = DATA / 'users'
 
 
 def import_movies(movies_data) -> typing.Generator[models.Movie, typing.Any, typing.Any]:
@@ -44,10 +37,10 @@ def import_users(users_data) -> typing.Generator[models.User, typing.Any, typing
 
 
 def dump_users(session):
-    for user in import_users(settings.DEFAULT_DATA_PATH / 'users'):
+    for user in import_users(config.DATA_PATH / 'users'):
         crud.dump(user, session)
 
 
 def dump_movies(session):
-    for movie in import_movies(settings.DEFAULT_DATA_PATH / 'movies.json'):
+    for movie in import_movies(config.DATA_PATH / 'movies.json'):
         crud.dump(movie, session)
