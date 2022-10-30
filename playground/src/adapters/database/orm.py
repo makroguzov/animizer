@@ -32,7 +32,7 @@ class BaseModel(object):
 
 genres_association_table = Table(
     "genres_association_table",
-    BaseModel.metadata,
+    BaseModel.metadata,  # type: ignore
     Column("genre_id", ForeignKey("Genre.id"), primary_key=True),
     Column("movie_id", ForeignKey("Movie.id"), primary_key=True),
 )
@@ -42,9 +42,6 @@ class Genre(BaseModel):
     name: str = Column(String(255), nullable=False, unique=True)
     russian: str = Column(String(255), nullable=False)
     kind: str = Column(String(255), nullable=False)
-    movies: list[Movie] = relationship('Movie',
-                                       cascade='all, delete-orphan',
-                                       secondary=genres_association_table)
 
     def __init__(self, id_: int, name: str, russian: str, kind: str):
         self.id = id_
@@ -62,7 +59,6 @@ class Movie(BaseModel):
     score: float = Column(Float, nullable=False)
     description: str = Column(String(511), nullable=False)
     genres: list[Genre] = relationship('Genre',
-                                       cascade='all, delete-orphan',
                                        secondary=genres_association_table)
 
     def __init__(self, id_: int, name: str, russian: str,
