@@ -4,9 +4,10 @@ import json
 import pathlib
 import typing
 
-import pandas
+import pandas  # type: ignore
 
 from src.adapters.database import crud
+from src.core import settings
 from src.domain import models
 
 DATA = pathlib.Path(__file__) \
@@ -16,7 +17,7 @@ MOVIES_DATA = DATA / 'movies.json'
 USERS_DATA = DATA / 'users'
 
 
-def import_movies(movies_data) -> typing.Generator[models.Movie]:
+def import_movies(movies_data) -> typing.Generator[models.Movie, typing.Any, typing.Any]:
     for movie in json.load(movies_data.open()).values():
         yield models.Movie(
             id=movie['id'],
@@ -28,7 +29,7 @@ def import_movies(movies_data) -> typing.Generator[models.Movie]:
         )
 
 
-def import_users(users_data) -> typing.Generator[models.User]:
+def import_users(users_data) -> typing.Generator[models.User, typing.Any, typing.Any]:
     for user_f in users_data.iterdir():
         user_d = pandas.read_csv(user_f)
         yield models.User(
@@ -42,11 +43,11 @@ def import_users(users_data) -> typing.Generator[models.User]:
         )
 
 
-def dump_users(session, users_dir):
-    for user in import_users(users_dir):
+def dump_users(session):
+    for user in import_users(settings.DEFAULT_DATA_PATH / 'users'):
         crud.dump(user, session)
 
 
-def dump_movies(session, movies_path):
-    for movie in import_movies(movies_path):
+def dump_movies(session):
+    for movie in import_movies(settings.DEFAULT_DATA_PATH / 'movies.json'):
         crud.dump(movie, session)

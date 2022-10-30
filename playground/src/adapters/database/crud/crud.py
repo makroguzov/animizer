@@ -3,8 +3,8 @@ from __future__ import annotations
 import functools
 import typing
 
-from sqlalchemy import select
-from sqlalchemy.orm import Session
+from sqlalchemy import select  # type: ignore
+from sqlalchemy.orm import Session  # type: ignore
 
 from src.adapters.database import orm
 from src.domain import models
@@ -22,14 +22,8 @@ def dump(genre: models.Genre, session: Session): ...
 def dump(user: models.User, session: Session): ...
 
 
-def dump(obj: typing.Any, session: Session):
-    """
-
-    :param obj:
-    :param session:
-    :return:
-    """
-    return _dump_function_dispatcher(obj, session)
+def dump(*args, **kwargs):
+    return _dump_function_dispatcher(*args, **kwargs)
 
 
 @functools.singledispatch
@@ -89,7 +83,7 @@ def _(user: models.User, session: Session):
 def load_movies(
         id_: typing.Optional[int],
         session: Session
-) -> typing.Generator[models.Movie, ..., ...]:
+) -> typing.Generator[models.Movie, typing.Any, typing.Any]:
     """
 
     :param id_:
