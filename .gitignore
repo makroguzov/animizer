@@ -163,5 +163,4 @@ cython_debug/
 .DS_Store
 
 # Ignore Database staff
-playground/sqlite3.db
-playground/sqlite3.db-journal
+movies
