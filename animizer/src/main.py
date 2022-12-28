@@ -1,9 +1,16 @@
 import fastapi
+import nltk
 import uvicorn
 
 from src import model
 
 app = fastapi.FastAPI(title='Animizer')
+
+
+@app.on_event('startup')
+def startup():
+    nltk.download('stopwords')
+
 
 MODEL = model.Model('../model')
 
