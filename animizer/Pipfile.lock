@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d297d48254d7e0f811c647e0907f30b691c1b4201ec52489e6654c81adf9bd28"
+            "sha256": "956883b08107a6b4f8024651136fdc7541df04961f3bd62d346ac9c00205598b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -39,6 +39,14 @@
             ],
             "index": "pypi",
             "version": "==0.88.0"
+        },
+        "gunicorn": {
+            "hashes": [
+                "sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e",
+                "sha256:e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8"
+            ],
+            "index": "pypi",
+            "version": "==20.1.0"
         },
         "h11": {
             "hashes": [
@@ -241,6 +249,14 @@
             ],
             "markers": "python_version >= '3.6'",
             "version": "==2022.10.31"
+        },
+        "setuptools": {
+            "hashes": [
+                "sha256:57f6f22bde4e042978bcd50176fdb381d7c21a9efa4041202288d3737a0c6a54",
+                "sha256:a7620757bf984b58deaf32fc8a4577a9bbc0850cf92c20e1ce41c38c19e5fb75"
+            ],
+            "markers": "python_version >= '3.7'",
+            "version": "==65.6.3"
         },
         "sniffio": {
             "hashes": [

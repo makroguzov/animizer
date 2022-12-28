@@ -9,6 +9,7 @@ fastapi = "*"
 uvicorn = "*"
 nltk = "*"
 numpy = "*"
+gunicorn = "*"
 
 [dev-packages]
 
