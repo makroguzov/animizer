@@ -164,4 +164,3 @@ cython_debug/
 
 # Ignore Database staff
 playground/movies
-playground/movies.zip
