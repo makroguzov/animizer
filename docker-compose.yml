@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  animizer:
+    container_name: animizer
+    build:
+      context: animizer
+      dockerfile: Dockerfile
+      args:
+        HOST: 0.0.0.0
+        PORT: 8080
+    ports:
+      - '8080:8080'
+    restart: unless-stopped

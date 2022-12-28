@@ -1,6 +1,7 @@
 FROM python:3.10-slim
 
-COPY . /animizer
+COPY  . /animizer
+WORKDIR /animizer
 
 ARG HOST
 ARG PORT
@@ -11,4 +12,4 @@ ENV HOST=$HOST \
 RUN pip install --upgrade pip pipenv
 RUN pipenv install --system --deploy
 
-CMD gunicorn src.main:get_application --bind $HOST:$PORT
+CMD gunicorn src.main:app --bind $HOST:$PORT
