@@ -12,4 +12,6 @@ ENV HOST=$HOST \
 RUN pip install --upgrade pip pipenv
 RUN pipenv install --system --deploy
 
+RUN python -m nltk.downloader stopwords
+
 CMD gunicorn src.main:app --bind $HOST:$PORT
