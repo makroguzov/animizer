@@ -8,7 +8,7 @@ from src import model
 app = fastapi.FastAPI(title='Animizer')
 
 MODEL = model.Model(
-    pathlib.Path(__file__).parent.resolve() / 'model'
+    str(pathlib.Path(__file__).parent.parent.resolve() / 'model')
 )
 
 
@@ -21,4 +21,4 @@ def predict_score(title: str, description: str):
 
 
 if __name__ == '__main__':
-    uvicorn.run('src.main:app', host='0.0.0.0', port=8008, reload=True)
+    uvicorn.run('src.main:app', host='0.0.0.0', port=8080, reload=True)

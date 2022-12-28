@@ -25,7 +25,7 @@ class Model:
         if token_path.exists():
             self.token_ids = json.load(token_path.open())
         else:
-            raise ValueError('Ошибка!!!')
+            raise ValueError('Ошибка!!! Нет файла %s' % path)
 
         self._model = _NeuralModel(n_tokens=len(self.token_ids),
                                    concat_number_of_features=69 * 2,
@@ -35,7 +35,7 @@ class Model:
         if model_path.exists():
             self._model.load_state_dict(torch.load(model_path))
         else:
-            raise ValueError('Ошибка!!!')
+            raise ValueError('Ошибка!!! Нет файла %s' % path)
 
     def predict(self, title: str, descr: str) -> float:
         return self._model((
